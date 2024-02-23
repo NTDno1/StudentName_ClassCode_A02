@@ -1,0 +1,60 @@
+﻿@using BUS.Models
+@{
+    Layout = null;
+}
+@model List<Customer>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Bao gồm các thư viện DataTables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+</head>
+<body>
+    <h1>ListCustomer</H1> <br />
+        <a asp-action="AddCustomer"><input type="button" value="Clear"></a>
+    <table id="myTable" class="display">
+            <thead>
+                <tr>
+                <th>CustomerName</th>
+                <th>Mobile</th>
+                <th>Birthday</th>
+                <th>IdentityCard</th>
+                <th>LicenceNumber</th>
+                <th>LicenceDate</th>
+                <th>Email</th>
+                <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    <td>@customer.CustomerName</td>
+                    <td>@customer.Mobile</td>
+                    <td>@customer.Birthday</td>
+                    <td>@customer.IdentityCard</td>
+                    <td>@customer.LicenceNumber</td>
+                    <td>@customer.LicenceDate</td>
+                    <td>@customer.Email</td>
+                    <td>
+                        <button>Edit </button>
+                       <a asp-action="DeleteCustomer" asp-route-id="@customer.CustomerID"><input type="button" value="Clear"></a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                "paging": true // Bật tính năng phân trang
+            });
+        });
+    </script>
+
+</body>
+</html>
